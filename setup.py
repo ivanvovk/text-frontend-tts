@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="text_frontend", # Replace with your own username
+    name="text_frontend",
     version="0.0.1",
     author="Ivan Vovk",
     author_email="ivanvovk4@yandex.ru",
