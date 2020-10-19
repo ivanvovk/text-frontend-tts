@@ -20,4 +20,5 @@ setuptools.setup(
         "Operating System :: Unix",
     ],
     python_requires='>=3.6',
+    package_data={'': ['*.txt']}
 )
