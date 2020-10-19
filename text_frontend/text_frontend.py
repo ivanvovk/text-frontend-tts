@@ -129,9 +129,8 @@ class TextFrontend(object):
         if self.use_phonemes and not just_map:
             text = self.graphemes_to_phonemes(text, lang=lang)
             text = text.split(_PHONEME_SEP)
-        else:
-            sep = _PHONEME_SEP if self.use_phonemes else _GRAPHEME_SEP
-            text = text.split(sep)
+        elif self.use_phonemes:
+            text = text.split(_PHONEME_SEP)
 
         sequence = [
             self._symbol_to_id[s] for s in text \
