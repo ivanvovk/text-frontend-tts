@@ -115,7 +115,7 @@ class TextFrontend(object):
                 word for i, word in enumerate(words)])
         return phonemes
 
-    def text_to_sequence(self, text, lang=None):
+    def text_to_sequence(self, text, lang=None, just_map=False):
         """
         Encodes symbolic text into a sequence of character ids, which can be fed to TTS.
         Performs G2P as intermediate step if flag `use_phonemes` is set to `True`.
@@ -126,9 +126,12 @@ class TextFrontend(object):
         """
         text = clean_text(text, cleaner_names=self.text_cleaners)
 
-        if self.use_phonemes:
+        if self.use_phonemes and not just_map:
             text = self.graphemes_to_phonemes(text, lang=lang)
             text = text.split(_PHONEME_SEP)
+        else:
+            sep = _PHONEME_SEP if self.use_phonemes else _GRAPHEME_SEP
+            text = text.split(sep)
 
         sequence = [
             self._symbol_to_id[s] for s in text \
