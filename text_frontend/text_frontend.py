@@ -124,9 +124,8 @@ class TextFrontend(object):
         :param return_phonemes: whether to return idx mappings or phonemes itself if phonemes mode.
         :return: 
         """
-        text = clean_text(text, cleaner_names=self.text_cleaners)
-
         if self.use_phonemes and not just_map:
+            text = clean_text(text, cleaner_names=self.text_cleaners)
             text = self.graphemes_to_phonemes(text, lang=lang)
             text = text.split(_PHONEME_SEP)
         elif self.use_phonemes:
